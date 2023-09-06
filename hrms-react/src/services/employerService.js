@@ -9,6 +9,10 @@ class EmployerService{
 
     }
 
+    getEmployerByEmail(email){
+        return axios.get(`http://localhost:8080/api/employers/getemployerbyemail/:email?email=${email}`)
+    }
+
 }
 
 export default EmployerService
