@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JobAdvertisementService from "../services/jobAdvertisementService";
 import { Container,  Item, List } from "semantic-ui-react";
+import Navbar from "./common/Navbar";
 
 function JobAdvertisementDetail() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ function JobAdvertisementDetail() {
 
   return (
     <>
+    <Navbar />
       <Container>
         <Item.Group relaxed="very">
           <Item>

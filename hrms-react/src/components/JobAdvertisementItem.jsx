@@ -1,12 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Label } from 'semantic-ui-react';
 
-function JobAdvertisementItem({data}) {
+function JobAdvertisementItem() {
+
+  const {jobAdvertisementList} = useSelector(state => state.jobAdvertisement)
+
   return (
     <div>
         <Item.Group divided>
-              {data.map((jobAdvertisement) => {
+              {jobAdvertisementList.map((jobAdvertisement) => {
                 return (
                   <Item key={jobAdvertisement.id}  >
                     <Item.Image
@@ -36,15 +40,14 @@ function JobAdvertisementItem({data}) {
                       
                       <Item.Extra>
                         <Label color="blue">
-                          <Icon name="calendar alternate outline" /> Ending
-                          Date:
+                          <Icon name="calendar alternate outline" /> Bitiş Tarihi:
                           {jobAdvertisement.endingDate
                             .split("-")
                             .reverse()
                             .join("/")}
                         </Label>
                         <Label color="black">
-                          <Icon name="lira sign" /> Wage:
+                          <Icon name="lira sign" /> Maaş:
                           {jobAdvertisement.minSalary} -
                           {jobAdvertisement.maxSalary}
                         </Label>

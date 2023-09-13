@@ -8,16 +8,13 @@ import {
 } from "semantic-ui-react";
 import JobSeekerService from "../../services/jobSeekerService";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginToPage } from "../../store/actions/authActions";
+import { jobSeekerLoginValidationSchema } from "../../validators/jobSeekerValidator";
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required("Email alanını doldurunuz"),
-  password: Yup.string().required("Şifre alanını doldurunuz"),
-});
+
 
 function JobSeekerLoginForm({ handleJobSeekerButtonClick }) {
   
@@ -33,13 +30,24 @@ function JobSeekerLoginForm({ handleJobSeekerButtonClick }) {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: jobSeekerLoginValidationSchema,
     onSubmit: () => {
       jobSeekerService
         .getJobSeekerByEmail(values.email)
         .then((result) => {
           if (result.data.length !== 0) {
             dbData = result.data;
+            
+            if(dbData.dateOfBirth){
+              dbData.dateOfBirth = reverseDate(dbData.dateOfBirth)
+            }
+
+            if(dbData.entranceDate){
+              dbData.entranceDate = reverseDate(dbData.entranceDate)
+            }
+            if(dbData.graduationDate){
+              dbData.graduationDate = reverseDate(dbData.graduationDate)
+            }
             if(values.email === dbData.email && values.password === dbData.password){
               delete dbData.password
               dispatch(loginToPage(dbData))
@@ -56,6 +64,12 @@ function JobSeekerLoginForm({ handleJobSeekerButtonClick }) {
         });
     },
   });
+
+  function reverseDate(date) {
+
+    return date.split('-').reverse().join('/')
+    
+  }
 
   return (
     <>

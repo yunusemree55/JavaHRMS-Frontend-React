@@ -4,7 +4,7 @@ import { Grid} from "semantic-ui-react";
 import Sidebar from "./common/Sidebar";
 
 
-function Content({data}) {
+function Content() {
   
 
   return (
@@ -16,7 +16,7 @@ function Content({data}) {
             <Sidebar />
           </Grid.Column>
           <Grid.Column width={10}>
-            <JobAdvertisementList data={data}/>
+            <JobAdvertisementList/>
           </Grid.Column>
         </Grid.Row>
       </Grid>

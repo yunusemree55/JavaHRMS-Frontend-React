@@ -1,14 +1,18 @@
 import React from "react";
 import JobAdvertisementItem from "./JobAdvertisementItem";
 import LoadingSide from "./LoadingSide";
+import { useSelector } from "react-redux";
 
-function JobAdvertisementList({ data }) {
+function JobAdvertisementList() {
+
+  const {jobAdvertisementList} = useSelector(state => state.jobAdvertisement)
+
   return (
     <>
-      {data.length === 0 ? (
+      {jobAdvertisementList.length === 0 ? (
         <LoadingSide />
       ) : (
-        <JobAdvertisementItem data={data} />
+        <JobAdvertisementItem />
         
       )}
       

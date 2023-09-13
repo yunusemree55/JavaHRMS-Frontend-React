@@ -4,7 +4,7 @@ import JobSeekerRegisterForm from '../components/registerComponents/JobSeekerReg
 
 function RegisterPage() {
 
-  const [isEmployer, setIsEmployer] = useState(false)
+  const [isEmployer, setIsEmployer] = useState(true)
   
   const handleClickEmployerButton = () =>{
     setIsEmployer(false)

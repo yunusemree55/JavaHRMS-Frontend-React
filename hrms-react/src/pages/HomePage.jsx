@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import Navbar from "../components/common/Navbar";
 import Content from "../components/Content";
 import JobAdvertisementService from "../services/jobAdvertisementService";
+import { useDispatch } from "react-redux";
+import { setJobAdvertisementList } from "../store/actions/jobAdvertisementActions";
 
 function Home() {
-  const [jobAdvertisements, setJobAdvertisements] = useState([]);
+  
+  const dispatch = useDispatch()
 
-  const getCompanyName = (name) => {
-    const jobAdvertisementService = new JobAdvertisementService();
-    jobAdvertisementService
-      .getByCompanyName(name)
-      .then((result) => setJobAdvertisements(result.data));
-  };
+  
 
   const getData = () => {
     const jobAdvertisementService = new JobAdvertisementService();
     jobAdvertisementService.getAll().then((result) =>
       setTimeout(() => {
-        setJobAdvertisements(result.data);
+        dispatch(setJobAdvertisementList(result.data))
       }, 500)
     );
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  },[]);
 
   return (
     <>
-      <Navbar getCompanyName={getCompanyName} />
-      <Content data={jobAdvertisements} />
+      <Navbar />
+      <Content />
     </>
   );
 }

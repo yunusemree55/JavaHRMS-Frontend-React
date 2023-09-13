@@ -11,7 +11,7 @@ class JobSeekerService{
 
     getJobSeekerByEmail(email){
 
-        return axios.get(`http://localhost:8080/api/jobseekers/getjobseekerbyemailandpassword/email=:email?email=${email}`)
+        return axios.get(`http://localhost:8080/api/jobseekers/getjobseekerbyemail/email=:email?email=${email}`)
     }
     
     add(user){

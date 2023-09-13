@@ -1,17 +1,12 @@
 import { useFormik } from "formik";
-
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
-import * as Yup from "yup";
 import EmployerService from "../../services/employerService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { isEmployer, loginToPage } from "../../store/actions/authActions";
+import { employerLoginValidationSchema } from "../../validators/employerValidator";
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required("Email alanını doldurunuz"),
-  password: Yup.string().required("Şifre alanını doldurunuz"),
-});
 
 function EmployerLoginForm({ handleEmployerButtonClick }) {
   const notify = toast;
@@ -27,7 +22,7 @@ function EmployerLoginForm({ handleEmployerButtonClick }) {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: employerLoginValidationSchema,
     onSubmit: () => {
       employerService.getEmployerByEmail(values.email).then((result) => {
         if (result.data.length !== 0) {
@@ -36,6 +31,7 @@ function EmployerLoginForm({ handleEmployerButtonClick }) {
             values.email === dbData.email &&
             values.password === dbData.password
           ) {
+            dbData.phoneNumber = formatPhoneNumber(dbData.phoneNumber)
             dispatch(loginToPage(dbData));
             dispatch(isEmployer(true));
             navigate("/");
@@ -49,6 +45,17 @@ function EmployerLoginForm({ handleEmployerButtonClick }) {
       });
     },
   });
+
+
+  function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})$/);
+    if (match) {
+      return `+(${match[1]}) ${match[2]} ${match[3]} ${match[4]} ${match[5]}`
+      
+    }
+    return null;
+  }
 
   return (
     <>
