@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Table } from "semantic-ui-react";
+import JobSeekerService from "../../services/jobSeekerService";
 
 function JobSeekerDetailTable() {
-    
-  const { activeUser } = useSelector((state) => state.auth);
+  const [user, setUser] = useState({});
 
-  const entranceInfo = activeUser.entranceDate ? activeUser.entranceDate : ""
-  const graduationInfo = activeUser.graduationDate ? activeUser.graduationDate : "Devam ediyor"
-  
-  const entranceAndGraduationInfo = entranceInfo&&graduationInfo ? `${entranceInfo} || ${graduationInfo}` : "Girilmedi"
+  const jobSeekerService = new JobSeekerService();
+  const { userId } = useParams();
 
-  const isEntrance = entranceAndGraduationInfo==="Girilmedi" ? "active" : ""
+  useEffect(() => {
+    jobSeekerService
+      .getJobSeeekerById(parseInt(userId))
+      .then((result) => setUser(result.data));
+  }, [userId]);
 
+  const entranceInfo = user.entranceDate ? user.entranceDate : "";
+  const graduationInfo = user.graduationDate
+    ? user.graduationDate
+    : "Devam ediyor";
+
+  const entranceAndGraduationInfo =
+    entranceInfo && graduationInfo
+      ? `${entranceInfo} || ${graduationInfo}`
+      : "Girilmedi";
+
+  const isEntrance = entranceAndGraduationInfo === "Girilmedi" ? "active" : "";
 
   return (
     <>
@@ -20,33 +34,43 @@ function JobSeekerDetailTable() {
         <Table.Body>
           <Table.Row>
             <Table.HeaderCell textAlign="center">İsim Soyisim</Table.HeaderCell>
-            <Table.Cell>{`${activeUser.firstName} ${activeUser.lastName}`}</Table.Cell>
+            <Table.Cell>{`${user.firstName} ${user.lastName}`}</Table.Cell>
           </Table.Row>
-          <Table.Row >
+          <Table.Row>
             <Table.HeaderCell textAlign="center">Email</Table.HeaderCell>
-            <Table.Cell >{activeUser.email}</Table.Cell>
+            <Table.Cell>{user.email}</Table.Cell>
           </Table.Row>
-          <Table.Row >
+          <Table.Row>
             <Table.HeaderCell textAlign="center">Doğum Tarihi</Table.HeaderCell>
-            <Table.Cell className={!!activeUser.dateOfBirth ? "" : "active"}>{!!activeUser.dateOfBirth ? activeUser.dateOfBirth : "Girilmedi"}</Table.Cell>
+            <Table.Cell className={!!user.dateOfBirth ? "" : "active"}>
+              {!!user.dateOfBirth ? user.dateOfBirth : "Girilmedi"}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.HeaderCell textAlign="center">Üniversite</Table.HeaderCell>
-            <Table.Cell className={!!activeUser.universityName ? "" : "active"}>{!!activeUser.universityName ? activeUser.universityName : "Girilmedi" }</Table.Cell>
+            <Table.Cell className={!!user.universityName ? "" : "active"}>
+              {!!user.universityName ? user.universityName : "Girilmedi"}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.HeaderCell textAlign="center">Bölüm</Table.HeaderCell>
-            <Table.Cell className={!!activeUser.departmentName ? "" : "active"}>{!!activeUser.departmentName ? activeUser.departmentName : "Girilmedi"}</Table.Cell>
+            <Table.Cell className={!!user.departmentName ? "" : "active"}>
+              {!!user.departmentName ? user.departmentName : "Girilmedi"}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.HeaderCell textAlign="center">Giriş Tarihi - Mezun Tarihi</Table.HeaderCell>
-            <Table.Cell className={isEntrance} > {entranceAndGraduationInfo}  </Table.Cell>
+            <Table.HeaderCell textAlign="center">
+              Giriş Tarihi - Mezun Tarihi
+            </Table.HeaderCell>
+            <Table.Cell className={isEntrance}>
+              {" "}
+              {entranceAndGraduationInfo}{" "}
+            </Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
     </>
   );
 }
-// {activeUser.entranceDate} ||{ activeUser.graduationDate ? activeUser.graduationDate : "Devam ediyor"}
 
 export default JobSeekerDetailTable;

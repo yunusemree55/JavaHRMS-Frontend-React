@@ -3,9 +3,11 @@ import authReducer from "./reducers/authReducer";
 import jobAdvertisementReducer from "./reducers/jobAdvertisementReducer";
 
 
+
 const rootReducer = combineReducers({
     auth: authReducer,
-    jobAdvertisement:jobAdvertisementReducer
+    jobAdvertisement:jobAdvertisementReducer,
+    
 })
 
 export default rootReducer

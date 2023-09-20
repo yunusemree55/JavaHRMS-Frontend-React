@@ -6,9 +6,7 @@ import {
 
 const initialState = {
   jobAdvertisementList: [],
-  
 };
-
 
 export default function jobAdvertisementReducer(
   state = initialState,
@@ -20,11 +18,11 @@ export default function jobAdvertisementReducer(
         ...state,
       };
 
-      case SET_JOB_ADVERTISEMENT_LIST:
-        return{
-            ...state,
-            jobAdvertisementList: payload
-        }
+    case SET_JOB_ADVERTISEMENT_LIST:
+      return {
+        ...state,
+        jobAdvertisementList: payload,
+      };
 
     case FILTER_JOB_ADVERTISEMENT_BY_COMPANY_NAME:
       return {

@@ -16,9 +16,9 @@ function RegisterPage() {
 
   return (
     <>
-      {isEmployer ? <EmployerRegisterForm handleClickEmployerButton={handleClickEmployerButton} /> : <JobSeekerRegisterForm handleJobSeekerButton = {handleJobSeekerButton} />}
+      {isEmployer ? <EmployerRegisterForm handleClickEmployerButton={handleClickEmployerButton} /> : <JobSeekerRegisterForm handleJobSeekerButton ={handleJobSeekerButton}  />}
     </>
   )
 }
 
-export default RegisterPage 
+export default RegisterPage

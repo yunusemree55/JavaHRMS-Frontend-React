@@ -32,6 +32,7 @@ function EmployerLoginForm({ handleEmployerButtonClick }) {
             values.password === dbData.password
           ) {
             dbData.phoneNumber = formatPhoneNumber(dbData.phoneNumber)
+            dbData.id = dbData.id.toString()
             dispatch(loginToPage(dbData));
             dispatch(isEmployer(true));
             navigate("/");

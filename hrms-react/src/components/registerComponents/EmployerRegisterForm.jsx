@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import {  useFormik } from "formik";
 import React from "react";
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 
@@ -6,6 +6,7 @@ import EmployerService from "../../services/employerService";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { employerRegisterValidationSchema } from "../../validators/employerValidator";
+
 
 function EmployerRegisterForm({ handleClickEmployerButton }) {
   const employerService = new EmployerService();
@@ -23,7 +24,7 @@ function EmployerRegisterForm({ handleClickEmployerButton }) {
     },
     onSubmit: (values) => {
       const employer = values;
-      employer.phoneNumber = `9${employer.phoneNumber}`
+      employer.phoneNumber = `9${employer.phoneNumber}`;
       console.log(employer);
       var isEmailExists = false;
       var checkEmailAndDomainIsEqual =

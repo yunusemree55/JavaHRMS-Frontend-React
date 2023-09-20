@@ -1,17 +1,31 @@
-import axios from "axios"
+import axios from "axios";
 
+class PhotoService {
+  getAll() {
+    return axios.get("http://localhost:8080/api/photos/getall");
+  }
 
-class PhotoService{
+  update(photo) {
+    axios({
+      headers: { "content-type": "multipart/form-data" },
+      method: "put",
+      url: "http://localhost:8080/api/photos/update",
+      data: photo,
+    });
+  }
 
-    getAll(){
+  add(photo) {
+    axios({
+        headers: { "content-type": "multipart/form-data" },
+        method: "post",
+        url: "http://localhost:8080/api/photos/add",
+        data: photo,
+      });
+  }
 
-        return axios.get("http://localhost:8080/api/photos/getall")
-
-    }
-
+  getPhotoByUserId(id){
+    return axios.get(`http://localhost:8080/api/photos/getphotobyuserid/${id}`)
+  }
 }
 
-export default PhotoService
-
-
-
+export default PhotoService;

@@ -16,6 +16,9 @@ import { jobSeekerLoginValidationSchema } from "../../validators/jobSeekerValida
 
 
 
+
+
+
 function JobSeekerLoginForm({ handleJobSeekerButtonClick }) {
   
   const notify = toast

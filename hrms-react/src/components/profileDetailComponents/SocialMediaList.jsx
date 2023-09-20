@@ -3,15 +3,16 @@ import { Table } from "semantic-ui-react";
 import SocialMediaService from "../../services/socialMediaService";
 import { useSelector } from "react-redux";
 import SocialMediaAdd from "./SocialMediaAdd";
+import { useParams } from "react-router-dom";
 
 function SocialMediaList() {
   const { activeUser } = useSelector((state) => state.auth);
-
+  const {userId} = useParams()
   const socialMediaService = new SocialMediaService();
   const [socialMedias, setSocialMedias] = useState([]);
 
   useEffect(() => {
-    socialMediaService.getSocialMediaByUserId(activeUser.id).then((result) => {
+    socialMediaService.getSocialMediaByUserId(userId).then((result) => {
       setSocialMedias(result.data);
     });
   });
@@ -37,7 +38,7 @@ function SocialMediaList() {
           })}
 
           <Table.Row>
-            <SocialMediaAdd userId={activeUser.id} />
+            <SocialMediaAdd activeUserId={activeUser.id} />
           </Table.Row>
         </Table.Body>
       </Table>

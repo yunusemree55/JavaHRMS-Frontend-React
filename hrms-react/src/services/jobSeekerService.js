@@ -9,7 +9,7 @@ class JobSeekerService{
 
     }
 
-    getJobSeekerByEmail(email){
+    getJobSeekerByEmail(email){ 
 
         return axios.get(`http://localhost:8080/api/jobseekers/getjobseekerbyemail/email=:email?email=${email}`)
     }
@@ -24,6 +24,10 @@ class JobSeekerService{
 
     exitsJobSeekerEmail(email){
         return axios.get(`http://localhost:8080/api/jobseekers/existsbyemail/:email?email=${email}`)
+    }
+
+    getJobSeeekerById(id){
+        return axios.get(`http://localhost:8080/api/jobseekers/getjobseekerbyid/${id}`)
     }
 }
 

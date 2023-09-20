@@ -8,7 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import JobAdvertisementDetail from "./components/JobAdvertisementDetail";
 import ErrorPage from "./pages/ErrorPage";
 import RegisterPage from "./pages/RegisterPage";
-import ProfileDetailPage from "./pages/ProfileDetailPage";
+import JobAdvertisementAddPage from "./pages/JobAdvertisementAddPage";
+import JobSeekerProfileDetailPage from "./pages/JobSeekerProfileDetailPage";
+import EmployerProfileDetailPage from "./pages/EmployerProfileDetailPage";
 
 function App() {
   return (
@@ -18,9 +20,11 @@ function App() {
         <Route path="/detail/:id"   element={<JobAdvertisementDetail />} />
         <Route path="/login"  element={<LoginPage />} />
         <Route path="/register"  element={<RegisterPage />} />
-        <Route path="/profiledetail/:userId"  element={<ProfileDetailPage />} />
+        <Route path="/employers/:userId"  element={<EmployerProfileDetailPage />} />
+        <Route path="/jobseekers/:userId"  element={<JobSeekerProfileDetailPage />} />
+        <Route path="/jobadvertisementadd"  element={<JobAdvertisementAddPage />} />
         <Route path="/*"  element={<ErrorPage />} />
-      </Routes> 
+      </Routes>  
 
       
       

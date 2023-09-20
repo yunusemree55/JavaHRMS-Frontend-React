@@ -15,7 +15,7 @@ function Content() {
           <Grid.Column width={3}>
             <Sidebar />
           </Grid.Column>
-          <Grid.Column width={10}>
+          <Grid.Column width={8}>
             <JobAdvertisementList/>
           </Grid.Column>
         </Grid.Row>

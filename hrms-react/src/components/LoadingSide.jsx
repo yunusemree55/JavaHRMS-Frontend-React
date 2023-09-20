@@ -1,17 +1,11 @@
-import React from 'react'
-import { Dimmer, Loader} from 'semantic-ui-react'
+import React from "react";
 
 function LoadingSide() {
   return (
-    <div>
-       
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-    
-          
+    <div className="flex center">
+      <h2>İş ilanı henüz eklenmedi</h2>
     </div>
-  )
+  );
 }
 
-export default LoadingSide
+export default LoadingSide;
