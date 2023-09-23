@@ -3,7 +3,7 @@ import JobSeekerLoginForm from "../components/loginComponents/JobSeekerLoginForm
 import EmployerLoginForm from "../components/loginComponents/EmployerLoginForm";
 
 function LoginPage() {
-  const [isEmployer, setIsEmployer] = useState(false);
+  const [isEmployer, setIsEmployer] = useState(true);
 
   const handleEmployerButtonClick = () => {
 

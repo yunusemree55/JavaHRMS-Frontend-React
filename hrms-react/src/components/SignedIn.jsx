@@ -6,19 +6,24 @@ import { Dropdown, Image } from "semantic-ui-react";
 function SignedIn({ signOut }) {
   const { activeUser, isEmployer } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  
 
   const goToProfileDetail = () => {
-    if(isEmployer){
-
+    if (isEmployer) {
       navigate(`/employers/${activeUser.id}`);
-    }else{
+    } else {
       navigate(`/jobSeekers/${activeUser.id}`);
     }
   };
 
-
   const goToJobAdvertisementAddPage = () => {
-    navigate("/jobadvertisementadd")
+    navigate("/jobadvertisementadd");
+  };
+
+  const goToCvAddPage = () => {
+
+    navigate("/cv/add")
+
   }
 
   return (
@@ -41,10 +46,21 @@ function SignedIn({ signOut }) {
             text="Bilgilerim"
           />
           {isEmployer && (
-           
-              <Dropdown.Item onClick={goToJobAdvertisementAddPage} icon="add" text="İş İlanı ekle" ></Dropdown.Item>
-            
+            <Dropdown.Item
+              onClick={goToJobAdvertisementAddPage}
+              icon="add"
+              text="İş İlanı ekle"
+            ></Dropdown.Item>
           )}
+          {
+            !isEmployer && activeUser.cv === null && (
+              <Dropdown.Item
+              onClick={goToCvAddPage}
+              icon="add"
+              text="Cv ekle"
+            ></Dropdown.Item>
+            )
+          }
           <Dropdown.Item onClick={signOut} icon="sign-out" text="Çıkış Yap" />
         </Dropdown.Menu>
       </Dropdown>

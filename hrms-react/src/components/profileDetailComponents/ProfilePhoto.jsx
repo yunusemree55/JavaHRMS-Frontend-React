@@ -7,7 +7,6 @@ import { updateActiveUserPhoto } from "../../store/actions/authActions";
 
 function ProfilePhoto() {
   const [open, setOpen] = useState(false);
-  const [update, setUpdate] = useState(false);
   const [photo, setPhoto] = useState("");
   const [file, setFile] = useState(undefined);
   const [mainPhoto, setMainPhoto] = useState("");
@@ -65,6 +64,7 @@ function ProfilePhoto() {
   return (
     <>
       <Modal
+      size="small"
         onClose={() => setOpen(false)}
         onOpen={() => activeUser.id === userId && setOpen(true)}
         open={open}

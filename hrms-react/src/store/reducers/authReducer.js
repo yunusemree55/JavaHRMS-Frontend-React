@@ -2,7 +2,8 @@ import {
   IS_EMPLOYER,
   LOGIN_TO_PAGE,
   LOGOUT_FROM_PAGE,
-  UPDATE_ACTIVE_USER,
+  UPDATE_ACTIVE_USER_CV,
+  UPDATE_ACTIVE_USER_PHOTO,
 } from "../actions/authActions";
 import { activeUser } from "../initialValues";
 
@@ -46,7 +47,7 @@ export default function authReducer(state = initialState, { type, payload }) {
         isEmployer: payload,
       };
 
-      case UPDATE_ACTIVE_USER:
+      case UPDATE_ACTIVE_USER_PHOTO:
         return{
           ...state,
           activeUser:{
@@ -54,6 +55,15 @@ export default function authReducer(state = initialState, { type, payload }) {
             photoUrl:payload
           }
         }
+
+        case UPDATE_ACTIVE_USER_CV:
+          return{
+            ...state,
+            activeUser:{
+              ...state.activeUser,
+              cv:payload
+            }
+          }
       
     default:
       return state;

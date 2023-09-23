@@ -7,6 +7,10 @@ class JobAdvertisementService{
         return axios.get("http://localhost:8080/api/jobadvertisements/getall")
         
     }
+
+    getAllActiveJobAdvertisements(){
+        return axios.get("http://localhost:8080/api/jobadvertisements/getActiveJobAdvertisements")
+    }
     
     add(jobAdvertisement){
 
@@ -24,6 +28,15 @@ class JobAdvertisementService{
 
     getById(id){
         return axios.get(`http://localhost:8080/api/jobadvertisements/getJobAdvertisementById/:id?id=${id}`)
+    }
+
+    update(jobAdvertisement){
+
+        axios({
+            url:"http://localhost:8080/api/jobadvertisements/update",
+            data:jobAdvertisement,
+            method:"put"
+        })
     }
 
 }

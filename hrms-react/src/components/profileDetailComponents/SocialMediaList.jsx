@@ -23,8 +23,7 @@ function SocialMediaList() {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell textAlign="center">
-              {" "}
-              Sosyal Medya{" "}
+              Sosyal Medya
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -46,4 +45,4 @@ function SocialMediaList() {
   );
 }
 
-export default SocialMediaList;
+export default SocialMediaList; 

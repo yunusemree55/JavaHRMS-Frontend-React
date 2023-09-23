@@ -1,7 +1,7 @@
 import React from "react";
-import JobAdvertisementList from "./JobAdvertisementList";
 import { Grid} from "semantic-ui-react";
 import Sidebar from "./common/Sidebar";
+import JobAdvertisementList from "./jobAdvertisementComponents/JobAdvertisementList";
 
 
 function Content() {

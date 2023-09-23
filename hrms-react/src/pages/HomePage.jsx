@@ -13,10 +13,10 @@ function Home() {
 
   const getData = () => {
     const jobAdvertisementService = new JobAdvertisementService();
-    jobAdvertisementService.getAll().then((result) =>
-      setTimeout(() => {
+    jobAdvertisementService.getAllActiveJobAdvertisements().then((result) =>
+      
         dispatch(setJobAdvertisementList(result.data))
-      }, 500)
+      
     );
   };
 

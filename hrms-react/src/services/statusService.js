@@ -6,3 +6,5 @@ class StatusService{
         return axios.get("http://localhost:8080/api/statuses/getall")
     }
 }
+
+export default StatusService

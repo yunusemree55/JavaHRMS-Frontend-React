@@ -136,4 +136,20 @@ input[type=number] {
   margin-top: 1em !important;
  }
 
- 
+
+ .text-white{
+  color:white
+ }
+
+
+.bg-gray{
+  background-color: gray;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+
+.fs-3{
+  font-size: 20px;
+}

@@ -3,7 +3,8 @@
 export const LOGIN_TO_PAGE = "LOGIN_TO_PAGE";
 export const LOGOUT_FROM_PAGE = "LOGOUT_FROM_PAGE";
 export const IS_EMPLOYER = "IS_EMPLOYER"
-export const UPDATE_ACTIVE_USER= "UPDATE_ACTIVE_USER"
+export const UPDATE_ACTIVE_USER_PHOTO= "UPDATE_ACTIVE_USER_PHOTO"
+export const UPDATE_ACTIVE_USER_CV = "UPDATE_ACTIVE_USER_CV"
 
 export function loginToPage(user) {
 
@@ -34,8 +35,17 @@ export function isEmployer(bool) {
 export function updateActiveUserPhoto(updatedPhoto) {
 
     return{
-        type:UPDATE_ACTIVE_USER,
+        type:UPDATE_ACTIVE_USER_PHOTO,
         payload:updatedPhoto
+    }
+    
+}
+
+export function updateActiveUserCv(cv) {
+
+    return{
+        type: UPDATE_ACTIVE_USER_CV,
+        payload:cv
     }
     
 }
