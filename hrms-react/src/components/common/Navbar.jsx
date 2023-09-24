@@ -5,7 +5,7 @@ import SignedIn from "../SignedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmployer, logoutFromPage } from "../../store/actions/authActions";
 import { useNavigate } from "react-router-dom";
-import { filterJobAdvertisementByCompanyName } from "../../store/actions/jobAdvertisementActions";
+import { filterJobAdvertisementByCompanyName, setJobAdvertisementList } from "../../store/actions/jobAdvertisementActions";
 import JobAdvertisementService from "../../services/jobAdvertisementService";
 
 function Navbar() {
@@ -13,9 +13,9 @@ function Navbar() {
   const { isLogin } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const jobAdvertisementService = new JobAdvertisementService();
 
   const getCompanyName = (name) => {
-    const jobAdvertisementService = new JobAdvertisementService();
     jobAdvertisementService
       .getByCompanyName(name)
       .then((result) =>
@@ -41,7 +41,9 @@ function Navbar() {
   };
 
   const handleResetClick = () => {
-    getCompanyName("");
+    jobAdvertisementService.getAllActiveJobAdvertisements().then(result => {
+      dispatch(setJobAdvertisementList(result.data))
+    })
     setInput("");
   };
   

@@ -141,6 +141,9 @@ input[type=number] {
   color:white
  }
 
+ .mt-2{
+  margin-top: 5px !important;
+ }
 
 .bg-gray{
   background-color: gray;

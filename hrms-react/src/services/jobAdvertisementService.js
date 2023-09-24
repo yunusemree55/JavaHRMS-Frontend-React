@@ -30,6 +30,10 @@ class JobAdvertisementService{
         return axios.get(`http://localhost:8080/api/jobadvertisements/getJobAdvertisementById/:id?id=${id}`)
     }
 
+    getJobAdvertisementsByJobPositionId(id){
+        return axios.get(`http://localhost:8080/api/jobadvertisements/getjobadvertisementsbyjobpositionid/${id}`)
+    }
+
     update(jobAdvertisement){
 
         axios({

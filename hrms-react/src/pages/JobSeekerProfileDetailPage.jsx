@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/common/Navbar";
 import SocialMediaList from "../components/profileDetailComponents/SocialMediaList";
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Tab } from "semantic-ui-react";
 import JobSeekerDetailTable from "../components/profileDetailComponents/jobSeekerProfileDetailComponent/JobSeekerDetailTable";
 import ProfilePhoto from "../components/profileDetailComponents/ProfilePhoto";
 import JobSeekerService from "../services/jobSeekerService";
@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import LanguageList from "../components/profileDetailComponents/jobSeekerProfileDetailComponent/LanguageList";
 import CvContent from "../components/profileDetailComponents/jobSeekerProfileDetailComponent/CvContent";
+import JobExperienceTable from "../components/profileDetailComponents/jobSeekerProfileDetailComponent/JobExperienceTable";
 
 function JobSeekerProfileDetailPage() {
   const [jobSeeker, setJobSeeker] = useState({});
@@ -27,6 +28,11 @@ function JobSeekerProfileDetailPage() {
     });
   });
 
+  const panes = [
+    { menuItem: 'Profil Detayı', render: () => <Tab.Pane><JobSeekerDetailTable /></Tab.Pane> },
+    { menuItem: 'İş Deneyimi', render: () => <Tab.Pane><JobExperienceTable /></Tab.Pane> },
+    
+  ]
 
   return (
     <>
@@ -35,11 +41,13 @@ function JobSeekerProfileDetailPage() {
         <Container>
           <Grid>
             <Grid.Row>
-              <Grid.Column verticalAlign="middle" width={5}>
+              <Grid.Column  width={5}>
                 <ProfilePhoto />
               </Grid.Column>
-              <Grid.Column width={11} verticalAlign="middle">
-                <JobSeekerDetailTable />
+              <Grid.Column width={11} >
+
+              <Tab  panes={panes} />
+               
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
